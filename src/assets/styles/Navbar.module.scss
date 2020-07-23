@@ -3,6 +3,7 @@
     height: 60px;
     position: sticky;
     top: 0px;
+    padding:15px;
 }
 
 .main_container{
@@ -18,14 +19,27 @@
 .logo_container{
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+}
+
+.logo_icon_container{
+    margin-right: 15px;
+    margin-left: 15px;
+    width: 30px;
+    height: 30px;
+    svg{
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .expand_container{
+    background-color: #aeaeae;
     padding: 7px 10px;
     border-radius: 50px;
     &:hover{
         cursor: pointer;
-        background-color: #b1b1b1;
+        background-color: #a5a5a5;
     }
 }
 
