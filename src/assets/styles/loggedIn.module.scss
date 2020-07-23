@@ -1,0 +1,15 @@
+.main_container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sidebar_container{
+    background-color: #37474F;
+    width: 20%;
+}
+
+.sidebar_details_container{
+    width: 100%;
+    padding: 15px;
+    background-color: #d1d1d1;
+}

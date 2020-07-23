@@ -1,0 +1,28 @@
+.heading_container{
+    border-bottom: 2px solid #9a9595;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+    button{
+        background-color: #3e8ed5;
+        border: none;
+        padding: 8px;
+        color: #fff;
+        border-radius: 5px;
+        &:hover{
+            cursor: pointer;
+            background-color: #2871b1;
+        }
+    }
+    .title{
+        p{
+            margin: 0px;
+        }
+    }
+}
+
+#task_title,#assign_date{
+    width: 100%;
+    border: 0px;
+    border-bottom: 2px solid #e5e5e5;
+}
