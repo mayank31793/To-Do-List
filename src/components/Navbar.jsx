@@ -29,9 +29,9 @@ const Navbar = (props) => {
                         ?
                         <div className={styles.login_details}>
                             <div className={styles.profile_pic}>
-                                <img src={props.loginData.image}/>
+                                <img src={props.loginData.image} alt="Pic" />
                             </div>
-                            <p>{props.loginData.name}</p>
+                            <span>{props.loginData.name}</span>
                         </div>
                         :
                         <div>

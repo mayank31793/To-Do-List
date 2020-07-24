@@ -9,12 +9,6 @@ ul{
             display: flex;
             color: #fff;
             text-decoration: none;
-            &.active{
-                color: red;
-            }
-        }
-        &:hover{
-            color:#E6E8E8;
         }
     }
 }

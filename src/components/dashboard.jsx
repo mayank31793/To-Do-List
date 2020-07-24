@@ -2,6 +2,8 @@ import React,{ useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { FcApproval } from 'react-icons/fc';
+import { FiEdit } from 'react-icons/fi';
+import { TiDelete } from 'react-icons/ti';
 
 import styles from '../assets/styles/dashboard.module.scss';
 
@@ -39,7 +41,7 @@ const Dashboard = (props) => {
                 var arr = [];
                 for(var key in res.data){
                     console.log(res.data[key]);
-                    arr.push(res.data[key]);
+                    arr.unshift(res.data[key]);
                 }
                 setRecievedData(arr);
             })
@@ -58,8 +60,22 @@ const Dashboard = (props) => {
                 </div>
             </div>
             <div className={styles.component_details_container}>
-                <ul>
-                    {recievedData.map((res) => <li>{res.title}</li>)}
+                <ul className={styles.data_layout}>
+                    {recievedData.map((res) => (
+                        <li>
+                            <div>
+                                {res.title}
+                            </div>
+                            <div className={styles.edit_delete}>
+                                <div className={styles.edit}>
+                                    <FiEdit />
+                                </div>
+                                <div className={styles.delete}>
+                                    <TiDelete />
+                                </div>
+                            </div>
+                        </li>
+                    ))}
                 </ul>
                 {/* modal data */}
                 <Modal show={show} onHide={handleClose} centered>
