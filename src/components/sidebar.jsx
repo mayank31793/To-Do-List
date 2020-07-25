@@ -12,7 +12,7 @@ const Sidebar = () => {
         <>
             <ul>
                 <li>
-                    <NavLink to="/dashboard" activeClassName="active">
+                    <NavLink to="/dashboard" activeClassName={styles.activeLink}>
                         <div className={styles.link_icon}>
                             <RiDashboardLine />
                         </div>
@@ -22,7 +22,7 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/all" activeClassName="active">
+                    <NavLink to="/all" activeClassName={styles.activeLink}>
                         <div className={styles.link_icon}>
                             <BsListTask />
                         </div>
@@ -32,7 +32,7 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/completed" activeClassName="active">
+                    <NavLink to="/completed" activeClassName={styles.activeLink}>
                         <div className={styles.link_icon}>
                             <FaCheckDouble />
                         </div>
@@ -42,7 +42,7 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/pending" activeClassName="active">
+                    <NavLink to="/pending" activeClassName={styles.activeLink}>
                         <div className={styles.link_icon}>
                             <RiCalendarLine />
                         </div>

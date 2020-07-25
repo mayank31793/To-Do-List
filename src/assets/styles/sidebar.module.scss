@@ -9,6 +9,19 @@ ul{
             display: flex;
             color: #fff;
             text-decoration: none;
+            &:hover{
+                text-decoration: none;
+                color: #00ab9b;
+            }
         }
     }
+}
+
+.link_icon{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.activeLink{
+    color: #00ab9b;
 }
