@@ -1,23 +1,31 @@
+$fontFamily : 'Roboto', sans-serif;
+
 .heading_container{
     border-bottom: 2px solid #9a9595;
     display: flex;
     justify-content: space-between;
     padding: 10px 0px;
-    button{
-        background-color: #3e8ed5;
-        border: none;
-        padding: 8px;
-        color: #fff;
-        border-radius: 5px;
-        &:hover{
-            cursor: pointer;
-            background-color: #2871b1;
-        }
-    }
+    height: 53px;
     .title{
+        display: flex;
+        align-items: center;
         p{
             margin: 0px;
         }
+    }
+}
+
+.success{
+    svg{
+        height: 45px;
+        width: 45px;
+    }
+    p{
+        color:#8bc34a;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: $fontFamily;
+        margin-top: 15px;
     }
 }
 
@@ -25,6 +33,26 @@
     width: 100%;
     border: 0px;
     border-bottom: 2px solid #e5e5e5;
+}
+
+.task_title,.assign_date{
+    width: 100%;
+    border: 1.5px solid #c2c2c6;
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    &:focus{
+        border: 1.5px solid #9191f3;
+    }
+}
+
+.custom_modal{
+    label{
+        margin-bottom: 3px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
 }
 
 .data_layout{
@@ -37,6 +65,7 @@
     margin-top: 30px;
     li{
         // width: 31%;
+        background-color: #ede9e9;
         position: relative;
         padding: 15px;
         height: 150px;
@@ -44,6 +73,7 @@
         border-bottom: 0px;
         box-shadow: 10px 5px 25px #9c9c9c;
         margin-bottom: 20px;
+        overflow: hidden;
     }
 }
 
@@ -63,5 +93,39 @@
         &:hover{
             cursor: pointer;
         }
+    }
+}
+
+$containerHeight: 150px;
+.color_picker_container{
+    height: $containerHeight;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.color_picker{
+    display: flex;
+    .color_red,.color_green,.color_blue,.color_yellow{
+        width: 40px;
+        height: $containerHeight/4;
+    }
+    .color_red{
+        background-color: red;
+    }
+    .color_green{
+        background-color: green;
+    }
+    .color_blue{
+        background-color: blue;
+    }
+    .color_yellow{
+        background-color: yellow;
+    }
+}
+
+.color_picker_icon{
+    &:hover{
+        cursor: pointer;
     }
 }
