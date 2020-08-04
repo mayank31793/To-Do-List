@@ -129,3 +129,20 @@ $containerHeight: 150px;
         cursor: pointer;
     }
 }
+
+
+.date_status_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.date_status{
+    width: 49%;
+    select{
+        width: 100%;
+        // -webkit-appearance: none;
+        border: 1.5px solid #c2c2c6;
+        height: 27px;
+        border-radius: 3px;
+    }
+}

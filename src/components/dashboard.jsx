@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect, createContext } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -10,22 +10,20 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import styles from '../assets/styles/dashboard.module.scss';
 
+export const ThemeContext = createContext();
+
 const Dashboard = (props) => {
     const [show, setShow] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [detailsEdit, setDetailsEdit] = useState(false);
     const [dataSubmitted,setDataSubmitted] = useState(false);
 
-    // edit popup details
-    const [editTitle, setEditTitle] = useState(null);
-    const [editDescription, setEditDescription] = useState(null);
-    const [editDate, setEditDate] = useState(null);
-    const [readOnly, setReadOnly] = useState(true);
-    const [idEdit,setIdEdit] = useState(null);
+    const [name, setName] = useState("Mayank");
 
     const [title,setTitle] = useState('');
     const [description,setDescription] = useState('');
     const [date,setDate] = useState('');
+    const [status,setStatus] = useState('');
     const [recievedData,setRecievedData] = useState([]);
 
     const handleClose = () => {
@@ -33,22 +31,8 @@ const Dashboard = (props) => {
         setDataSubmitted(!dataSubmitted);
     };
 
-    const handleCloseEdit = () => {
-        setShowEdit(false);
-        setDataSubmitted(!dataSubmitted);
-    };
-
     const handleAddNew = () => {
         setShow(true);
-    };
-
-    // on clicking edit icon on tasks
-    const handleShowEdit = (id) => {
-        setShowEdit(true);
-        var editedData = recievedData[id]
-        setEditTitle(editedData.title)
-        setEditDescription(editedData.description)
-        setIdEdit(id);
     };
 
     const handleSubmit = () => {
@@ -56,6 +40,7 @@ const Dashboard = (props) => {
             title,
             description,
             date,
+            status,
             bgColor:"#ede9e9"
         }
         axios.post('https://test-9515d.firebaseio.com/taskData.json',myTaskData)
@@ -75,19 +60,6 @@ const Dashboard = (props) => {
         }
     }
 
-    const handleUpdateEdit = () => {
-        const editedData = {
-            editTitle,
-            editDescription,
-            editDate,
-            bgColor:"#ede9e9"
-        }
-        axios.put('https://test-9515d.firebaseio.com/taskData/'+idEdit+'.json',editedData)
-            .then((res) => {
-                setDataSubmitted(!dataSubmitted);
-            })
-    }
-
     const handleColorChange = (current,color) => {
         console.log('this is color');
         console.log('current,color ',current.closest('li'),color);
@@ -98,9 +70,8 @@ const Dashboard = (props) => {
         console.log(a)
     }
 
-    const handleEditPopup = () => {
-        console.log('pop up efir');
-        setReadOnly(false)
+    const handleSelect = (statusValue) => {
+        setStatus(statusValue);
     }
 
     useEffect(() => {
@@ -140,7 +111,7 @@ const Dashboard = (props) => {
                                 </div>
                             </div>
                             <div className={styles.edit_delete}>
-                                <div className={styles.edit} onClick={() => handleShowEdit(id)}>
+                                <div className={styles.edit}>
                                     <FiEdit />
                                 </div>
                                 <div className={styles.delete} onClick={() => handleDelete(id,recievedData[id].title)}>
@@ -150,6 +121,7 @@ const Dashboard = (props) => {
                         </li>
                     ))}
                 </ul>:null}
+
                 {/* modal data */}
                 <Modal show={show} onHide={handleClose} className={styles.custom_modal} centered>
                     <Modal.Header closeButton>
@@ -179,12 +151,24 @@ const Dashboard = (props) => {
                                     onChange={(e) => setDescription(e.target.value)}
                                     required >
                                 </textarea>
-                                <label for="assign_date">Date</label>
-                                <input type="date" 
-                                    id="assign_date"
-                                    className={styles.task_title} 
-                                    onChange={(e) => setDate(e.target.value)} 
-                                    required />
+                                <div className={styles.date_status_container}>
+                                    <div className={styles.date_status}>
+                                        <label for="assign_date">Date</label>
+                                        <input type="date" 
+                                            id="assign_date"
+                                            className={styles.task_title} 
+                                            onChange={(e) => setDate(e.target.value)} 
+                                            required />
+                                    </div>
+                                    <div className={styles.date_status}>
+                                        <label for="assign_status">Status</label>
+                                        <select value={status} onChange={(e) => handleSelect(e.target.value)}>
+                                            <option value="todo">To Do</option>
+                                            <option value="inprogress">In Progress</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         }    
                     </Modal.Body>
@@ -198,45 +182,6 @@ const Dashboard = (props) => {
                     }
                 </Modal>
                 {/* modal data ends */}
-
-
-                {/* edit modal data */}
-                <Modal show={showEdit} onHide={handleCloseEdit} className={styles.custom_modal} centered>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Edit Task</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div>
-                            <label for="title">Task Title</label>
-                            <input type="text" 
-                                value={editTitle} 
-                                id="task_title"
-                                className={styles.task_title} 
-                                onChange={(e) => setEditTitle(e.target.value)}
-                                readOnly={readOnly} />
-                            <label for="task_description">Description</label>
-                            <textarea id="task_description" className={styles.task_title} 
-                                onChange={(e) => setEditDescription(e.target.value)}
-                                value={editDescription}
-                                readOnly={readOnly} />
-                            <label for="assign_date">Date</label>
-                            <input type="date" 
-                                id="assign_date"
-                                className={styles.task_title} 
-                                onChange={(e) => setDate(e.target.value)} 
-                                readOnly={readOnly} />
-                        </div> 
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="outline-primary" onClick={handleEditPopup}>
-                            Edit
-                        </Button>
-                        <Button variant="primary" onClick={() => handleUpdateEdit()}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-                {/* edit modal data ends */}
 
             </div>
         </div>
