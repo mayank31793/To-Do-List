@@ -4,7 +4,7 @@ import styles from '../assets/styles/dashboard.module.scss';
 import { ThemeContext } from './fetchedData';
 
 const AllTasks = (props) => {
-    const {name} = useContext(ThemeContext);
+    const {recievedData} = useContext(ThemeContext);
     return ( 
         <div>
             <div className={styles.heading_container}>
@@ -16,7 +16,9 @@ const AllTasks = (props) => {
                 </div>
             </div>
             <div className={styles.component_details_container}>
-                <p>This is All Tasks {name}</p>
+                <ul>
+                    {Object.keys(recievedData).map((id) => <li key={id}>{recievedData[id].title}</li>)}
+                </ul>
             </div>
         </div>
     );

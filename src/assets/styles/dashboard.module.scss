@@ -104,29 +104,28 @@ $containerHeight: 150px;
     right: 0px;
 }
 
-.color_picker{
-    display: flex;
-    .color_red,.color_green,.color_blue,.color_yellow{
-        width: 40px;
-        height: $containerHeight/4;
-    }
-    .color_red{
-        background-color: red;
-    }
-    .color_green{
-        background-color: green;
-    }
-    .color_blue{
-        background-color: blue;
-    }
-    .color_yellow{
-        background-color: yellow;
-    }
-}
-
 .color_picker_icon{
     &:hover{
         cursor: pointer;
+    }
+}
+
+.task_heading_container{
+    display: flex;
+    .task_heading{
+        width: 84%;
+    }
+    .task_progress{
+        width: 16%;
+        span{
+            // background-color: red;
+            color:#fff;
+            font-size: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            padding: 3px 5px;
+            border-radius: 3px;
+        }
     }
 }
 
