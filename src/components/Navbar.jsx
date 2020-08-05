@@ -11,7 +11,7 @@ const Navbar = (props) => {
         <div className={styles.container}>
             <div className={styles.main_container}>
                 <div className={styles.left_container}>
-                    <div className={styles.expand_container}>
+                    <div className={styles.expand_container} onClick={props.handleExpand}>
                         <GiHamburgerMenu />
                     </div>
                     <div className={styles.logo_container}>

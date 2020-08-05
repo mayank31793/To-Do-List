@@ -6,7 +6,7 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import styles from '../assets/styles/dashboard.module.scss';
 import { ThemeContext } from './fetchedData';
 
-const CompletedTasks = (props) => {
+const Progress = (props) => {
     const {recievedData,show,showEdit,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleSubmit,handleDelete,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
     return ( 
         <div>
@@ -19,9 +19,9 @@ const CompletedTasks = (props) => {
                 </div>
             </div>
             <div className={styles.component_details_container}>
-                {recievedData?
+            {recievedData?
                 <ul className={styles.data_layout}>
-                    {Object.keys(recievedData).filter((id) => recievedData[id].status == 'completed')
+                    {Object.keys(recievedData).filter((id) => recievedData[id].status == 'inprogress')
                         .map((id) => (
                         <li key={id} >
                             <div className={styles.task_heading_container}>
@@ -29,7 +29,7 @@ const CompletedTasks = (props) => {
                                     <h4>{recievedData[id].title}</h4>
                                 </div>
                                 <div className={styles.task_progress}>
-                                    <span style={{backgroundColor:recievedData[id].status == "completed" ? 'green':recievedData[id].status == "todo"?'red':'blue'}}>{recievedData[id].status}</span>
+                                    <span style={{backgroundColor:recievedData[id].status == "todo" ? 'red':recievedData[id].status == "completed"?'green':'blue'}}>{recievedData[id].status}</span>
                                 </div>
                             </div>
                             <div className={styles.edit_delete}>
@@ -48,4 +48,4 @@ const CompletedTasks = (props) => {
     );
 }
  
-export default CompletedTasks;
+export default Progress;
