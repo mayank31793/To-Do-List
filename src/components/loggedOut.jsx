@@ -8,10 +8,14 @@ import styles from '../assets/styles/loggedOut.module.scss';
 const LoggedOut = (props) => {
     const responseAuth = (response) => {
         if('graphDomain' in response){
-            props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url);
+            props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url,response.id);
+            console.log(response);
+            localStorage.setItem('userId',response.id)
         }
         else if('profileObj' in response){
-            props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl);
+            props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl,response.profileObj.googleId);
+            console.log(response);
+            localStorage.setItem('userId',response.profileObj.googleId)
         }
         else{
             props.handleLoginData(props.loginStatus,null,null);
@@ -55,20 +59,6 @@ const LoggedOut = (props) => {
                     </div>
                 </div>
             </div>            
-                                {/* <GoogleLogin 
-                                    clientId="146469123782-kqf593qh32a6k7t5dq667miunu5sek33.apps.googleusercontent.com"
-                                    buttonText="Login With Google"
-                                    onSuccess={responseAuth}  
-                                    onFailure={responseAuth}
-                                    cookiePolicy={'single_host_origin'}
-                                />
-                                <FacebookLogin
-                                    appId="706223930200877"
-                                    autoLoad={true}
-                                    fields="name,email,picture"
-                                    onClick={componentClicked}
-                                    callback={responseAuth} 
-                                /> */}
         </div>
     );
 }

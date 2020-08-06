@@ -6,13 +6,13 @@ import LoggedOut from './loggedOut';
 import Navbar from './Navbar';
 
 const Home = () => {
-    const [loginStatus, setLoginStatus] = useState(true);
+    const [loginStatus, setLoginStatus] = useState(false);
     const [expand, setExpand] = useState(true);
     const [loginData,setLoginData] = useState({name:'',image:''});
 
-    const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage) => {
+    const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage,userId) => {
         setLoginStatus(!loginStatus);
-        setLoginData({name:responseLoginDataName,image:responseLoginDataImage})
+        setLoginData({name:responseLoginDataName,image:responseLoginDataImage,userId:userId})
     }
 
     const handleExpand = () => {

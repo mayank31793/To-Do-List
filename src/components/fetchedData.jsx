@@ -17,18 +17,32 @@ const FetchedData = (props) => {
     const [description,setDescription] = useState('');
     const [date,setDate] = useState('');
     const [status,setStatus] = useState('todo');
+    const [editId,setEditId] = useState(null);
     const [recievedData,setRecievedData] = useState([]);
 
     useEffect(() => {
         axios.get('https://test-9515d.firebaseio.com/taskData.json')
-            .then((res) => setRecievedData(res.data))
+            .then((res) => {
+                var filterDataUserId = Object.keys(res.data).filter((key) => res.data[key].userLoginId == localStorage.getItem('userId'))
+                const filtered = Object.keys(res.data)
+                .filter(key => filterDataUserId.includes(key))
+                .reduce((obj, key) => {
+                    obj[key] = res.data[key];
+                    return obj;
+                }, {});
+                console.log(filtered);
+                setRecievedData(filtered);
+            })
     },[dataSubmitted])
+
+    console.log(recievedData);
 
     const handleClose = () => {
         setShow(false);
         setEditButtonVisiblity(false)
         setReadOnly(true);
-        // setDataSubmitted(!dataSubmitted);
+        setDisabled(true);
+        setDataSubmitted(false);
     };
 
     const handleAddNew = () => {
@@ -40,17 +54,18 @@ const FetchedData = (props) => {
         setReadOnly(false);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (userLoginId) => {
         const myTaskData = {
             title,
             description,
             date,
             status,
+            userLoginId,
             bgColor:"#ede9e9"
         }
         axios.post('https://test-9515d.firebaseio.com/taskData.json',myTaskData)
             .then((res) => {
-                setDataSubmitted(!dataSubmitted);
+                setDataSubmitted(true);
                 setTitle('');
                 setDescription('');
                 setDate('');
@@ -69,8 +84,19 @@ const FetchedData = (props) => {
         }
     }
 
-    const handleChangesSubmit = () => {
-        console.log('this is changes submit')
+    const handleChangesSubmit = (id) => {
+        var editedData = {
+            title,
+            description,
+            date,
+            status,
+            bgColor:"#ede9e9"
+        }
+        console.log('this is changes submit',id)
+        axios.put('https://test-9515d.firebaseio.com/taskData/'+id+'.json',editedData)
+            .then(res => {
+                setDataSubmitted(true);
+            });
     }
 
     const handleSelect = (statusValue) => {
@@ -85,18 +111,20 @@ const FetchedData = (props) => {
         setDescription(recievedData[id].description);
         setDate(recievedData[id].date);
         setStatus(recievedData[id].status);
+        setEditId(id);
         setEditButtonVisiblity(true);
         setReadOnly(true);
+        setDataSubmitted(false);
     }
 
     const handleEditWrite = () => {
         setReadOnly(false);
-        setDisabled(!disabled)
+        setDisabled(false)
     }
 
     return ( 
         <div>
-            <ThemeContext.Provider value={{recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleSubmit,handleDelete,handleChangesSubmit,handleSelect,handleEdit,handleEditWrite,setTitle,setDescription,setDate}}>
+            <ThemeContext.Provider value={{recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,editId,handleClose,handleAddNew,handleSubmit,handleDelete,handleChangesSubmit,handleSelect,handleEdit,handleEditWrite,setTitle,setDescription,setDate}}>
                 {props.children}
             </ThemeContext.Provider>
         </div>

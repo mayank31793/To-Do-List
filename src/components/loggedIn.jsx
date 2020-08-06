@@ -19,7 +19,7 @@ const LoggedIn = (props) => {
                 </div>
                 <div className={styles.sidebar_details_container}>
                     <Switch>
-                        <Route exact path="/dashboard" render={() => <FetchedData><Dashboard title="Dashboard" /></FetchedData>} />
+                        <Route exact path="/dashboard" render={() => <FetchedData><Dashboard title="Dashboard" userLoginData={props.loginData} /></FetchedData>} />
                         <Route exact path="/progress" render={() => <FetchedData><Progress title="In Progress" /></FetchedData>} />
                         <Route exact path="/completed" render={() => <FetchedData><Completed title="Completed Tasks" /></FetchedData> } />
                         <Route exact path="/pending" render={() => <FetchedData><Pending title="Pending Tasks" /></FetchedData> } />

@@ -12,8 +12,8 @@ import { ThemeContext } from './fetchedData';
 
 const Dashboard = (props) => {
 
-    const {recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleChangesSubmit,handleSubmit,handleDelete,handleEdit,handleEditWrite,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
-
+    const {recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,editId,handleClose,handleAddNew,handleChangesSubmit,handleSubmit,handleDelete,handleEdit,handleEditWrite,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
+    // console.log(props.userLoginData);
     return ( 
         <div>
             <div className={styles.heading_container}>
@@ -106,10 +106,10 @@ const Dashboard = (props) => {
                             <Button variant="outline-primary" onClick={handleEditWrite} style={{display:editButtonVisiblity?"inline-block":"none"}} >
                                 Edit
                             </Button>
-                            <Button variant="primary" onClick={handleChangesSubmit} style={{display:editButtonVisiblity?"inline-block":"none"}} disabled={disabled}>
+                            <Button variant="primary" onClick={() => handleChangesSubmit(editId)} style={{display:editButtonVisiblity?"inline-block":"none"}} disabled={disabled}>
                                 Save Changes
                             </Button>
-                            <Button variant="primary" onClick={handleSubmit} style={{display:editButtonVisiblity?"none":"inline-block"}}>
+                            <Button variant="primary" onClick={() => handleSubmit(props.userLoginData.userId)} style={{display:editButtonVisiblity?"none":"inline-block"}}>
                                 Add Task
                             </Button>
                         </Modal.Footer>
