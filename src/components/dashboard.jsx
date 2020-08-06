@@ -12,12 +12,7 @@ import { ThemeContext } from './fetchedData';
 
 const Dashboard = (props) => {
 
-    const {recievedData,show,showEdit,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleSubmit,handleDelete,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
-
-    // useEffect(() => {
-    //     axios.get('https://test-9515d.firebaseio.com/taskData.json')
-    //         .then((res) => setRecievedData(res.data))
-    // },[dataSubmitted])
+    const {recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleChangesSubmit,handleSubmit,handleDelete,handleEdit,handleEditWrite,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
 
     return ( 
         <div>
@@ -45,7 +40,7 @@ const Dashboard = (props) => {
                                 </div>
                             </div>
                             <div className={styles.edit_delete}>
-                                <div className={styles.edit}>
+                                <div className={styles.edit} onClick={() => handleEdit(id)}>
                                     <FiEdit />
                                 </div>
                                 <div className={styles.delete} onClick={() => handleDelete(id,recievedData[id].title)}>
@@ -79,12 +74,11 @@ const Dashboard = (props) => {
                                     id="task_title"
                                     className={styles.task_title} 
                                     onChange={(e) => setTitle(e.target.value)}
-                                    required />
+                                    readOnly={readOnly} />
                                 <label for="task_description">Description</label>
                                 <textarea id="task_description" className={styles.task_title} 
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    required >
-                                </textarea>
+                                    onChange={(e) => setDescription(e.target.value)} value={description}
+                                    readOnly={readOnly} />
                                 <div className={styles.date_status_container}>
                                     <div className={styles.date_status}>
                                         <label for="assign_date">Date</label>
@@ -92,11 +86,11 @@ const Dashboard = (props) => {
                                             id="assign_date"
                                             className={styles.task_title} 
                                             onChange={(e) => setDate(e.target.value)} 
-                                            required />
+                                            readOnly={readOnly} />
                                     </div>
                                     <div className={styles.date_status}>
                                         <label for="assign_status">Status</label>
-                                        <select value={status} onChange={(e) => handleSelect(e.target.value)}>
+                                        <select value={status} onChange={(e) => handleSelect(e.target.value)} readOnly={readOnly} >
                                             <option value="todo">To Do</option>
                                             <option value="inprogress">In Progress</option>
                                             <option value="completed">Completed</option>
@@ -109,8 +103,14 @@ const Dashboard = (props) => {
                     {dataSubmitted ? 
                         null :
                         <Modal.Footer>
-                            <Button variant="primary" onClick={handleSubmit}>
+                            <Button variant="outline-primary" onClick={handleEditWrite} style={{display:editButtonVisiblity?"inline-block":"none"}} >
+                                Edit
+                            </Button>
+                            <Button variant="primary" onClick={handleChangesSubmit} style={{display:editButtonVisiblity?"inline-block":"none"}} disabled={disabled}>
                                 Save Changes
+                            </Button>
+                            <Button variant="primary" onClick={handleSubmit} style={{display:editButtonVisiblity?"none":"inline-block"}}>
+                                Add Task
                             </Button>
                         </Modal.Footer>
                     }

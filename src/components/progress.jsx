@@ -7,7 +7,7 @@ import styles from '../assets/styles/dashboard.module.scss';
 import { ThemeContext } from './fetchedData';
 
 const Progress = (props) => {
-    const {recievedData,show,showEdit,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleSubmit,handleDelete,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
+    const {recievedData,show,showEdit,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleSubmit,handleDelete,handleEdit,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
     return ( 
         <div>
             <div className={styles.heading_container}>
