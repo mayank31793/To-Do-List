@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route} from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
 
 import styles from '../assets/styles/loggedIn.module.scss';
 import Sidebar from './sidebar';
@@ -19,6 +19,7 @@ const LoggedIn = (props) => {
                 </div>
                 <div className={styles.sidebar_details_container}>
                     <Switch>
+                        <Redirect exact from="/" to="/dashboard" />
                         <Route exact path="/dashboard" render={() => <FetchedData><Dashboard title="Dashboard" userLoginData={props.loginData} /></FetchedData>} />
                         <Route exact path="/progress" render={() => <FetchedData><Progress title="In Progress" /></FetchedData>} />
                         <Route exact path="/completed" render={() => <FetchedData><Completed title="Completed Tasks" /></FetchedData> } />

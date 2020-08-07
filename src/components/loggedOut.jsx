@@ -10,12 +10,16 @@ const LoggedOut = (props) => {
         if('graphDomain' in response){
             props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url);
             console.log(response);
-            localStorage.setItem('userId',response.id) 
+            localStorage.setItem('userId',response.id);
+            localStorage.setItem('userName',response.name);
+            localStorage.setItem('userImage',response.picture.data.url); 
         }
         else if('profileObj' in response){
             props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl);
             console.log(response);
-            localStorage.setItem('userId',response.profileObj.googleId)
+            localStorage.setItem('userId',response.profileObj.googleId);
+            localStorage.setItem('userName',response.profileObj.name);
+            localStorage.setItem('userImage',response.profileObj.imageUrl);
         }
         else{
             props.handleLoginData(props.loginStatus,null,null);
