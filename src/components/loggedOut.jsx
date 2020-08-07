@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -10,7 +10,7 @@ const LoggedOut = (props) => {
         if('graphDomain' in response){
             props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url,response.id);
             console.log(response);
-            localStorage.setItem('userId',response.id)
+            localStorage.setItem('userId',response.id) 
         }
         else if('profileObj' in response){
             props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl,response.profileObj.googleId);
@@ -31,7 +31,7 @@ const LoggedOut = (props) => {
             <div className={styles.main_container}>
                 <div className={styles.image_container}>
                     <div className={styles.image_div}>
-                        <img src="https://vil.xlri.ac.in/emdp/assets/images/login.svg" alt="login image" />
+                        <img src="https://vil.xlri.ac.in/emdp/assets/images/login.svg" alt="login Form" />
                     </div>
                 </div>
                 <div className={styles.loginform_container}>

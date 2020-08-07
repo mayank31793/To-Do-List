@@ -23,7 +23,7 @@ const FetchedData = (props) => {
     useEffect(() => {
         axios.get('https://test-9515d.firebaseio.com/taskData.json')
             .then((res) => {
-                var filterDataUserId = Object.keys(res.data).filter((key) => res.data[key].userLoginId == localStorage.getItem('userId'))
+                var filterDataUserId = Object.keys(res.data).filter((key) => res.data[key].userLoginId === localStorage.getItem('userId'))
                 const filtered = Object.keys(res.data)
                 .filter(key => filterDataUserId.includes(key))
                 .reduce((obj, key) => {

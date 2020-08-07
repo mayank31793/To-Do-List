@@ -1,7 +1,6 @@
-import React,{ useState, useEffect, useContext } from 'react';
+import React,{ useContext } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 
 import { FcApproval } from 'react-icons/fc';
 import { FiEdit } from 'react-icons/fi';
@@ -12,7 +11,7 @@ import { ThemeContext } from './fetchedData';
 
 const Dashboard = (props) => {
 
-    const {recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,editId,handleClose,handleAddNew,handleChangesSubmit,handleSubmit,handleDelete,handleEdit,handleEditWrite,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
+    const {recievedData,show,readOnly,disabled,editButtonVisiblity,dataSubmitted,title,description,status,editId,handleClose,handleAddNew,handleChangesSubmit,handleSubmit,handleDelete,handleEdit,handleEditWrite,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
     // console.log(props.userLoginData);
     return ( 
         <div>
@@ -36,7 +35,7 @@ const Dashboard = (props) => {
                                     <h4>{recievedData[id].title}</h4>
                                 </div>
                                 <div className={styles.task_progress}>
-                                    <span style={{backgroundColor:recievedData[id].status == "todo" ? 'red':recievedData[id].status == "completed"?'green':'blue'}}>{recievedData[id].status}</span>
+                                    <span style={{backgroundColor:recievedData[id].status === "todo" ? 'red':recievedData[id].status === "completed"?'green':'blue'}}>{recievedData[id].status}</span>
                                 </div>
                             </div>
                             <div className={styles.edit_delete}>

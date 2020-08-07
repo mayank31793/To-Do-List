@@ -25,3 +25,12 @@ ul{
 .activeLink{
     color: #00ab9b;
 }
+
+.logout_container{
+    display: flex;
+    color: #fff;
+    &:hover{
+        cursor: pointer;
+        color: #00ab9b;
+    }
+}

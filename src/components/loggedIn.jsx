@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Route} from 'react-router-dom';
 
 import styles from '../assets/styles/loggedIn.module.scss';
@@ -14,8 +14,8 @@ const LoggedIn = (props) => {
     return ( 
         <div className={styles.container}>
             <div className={styles.main_container}>
-                <div className={styles.sidebar_container} style={{width: props.expand == true ? '20%': '5%'}}>
-                    <Sidebar expand={props.expand} />
+                <div className={styles.sidebar_container} style={{width: props.expand === true ? '20%': '5%'}}>
+                    <Sidebar expand={props.expand} handleLogout={props.handleLogout} />
                 </div>
                 <div className={styles.sidebar_details_container}>
                     <Switch>

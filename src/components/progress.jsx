@@ -7,7 +7,7 @@ import styles from '../assets/styles/dashboard.module.scss';
 import { ThemeContext } from './fetchedData';
 
 const Progress = (props) => {
-    const {recievedData,show,showEdit,detailsEdit,dataSubmitted,title,description,date,status,handleClose,handleAddNew,handleSubmit,handleDelete,handleEdit,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
+    const {recievedData,handleDelete} = useContext(ThemeContext);
     return ( 
         <div>
             <div className={styles.heading_container}>
@@ -21,7 +21,7 @@ const Progress = (props) => {
             <div className={styles.component_details_container}>
             {recievedData?
                 <ul className={styles.data_layout}>
-                    {Object.keys(recievedData).filter((id) => recievedData[id].status == 'inprogress')
+                    {Object.keys(recievedData).filter((id) => recievedData[id].status === 'inprogress')
                         .map((id) => (
                         <li key={id} >
                             <div className={styles.task_heading_container}>
@@ -29,7 +29,7 @@ const Progress = (props) => {
                                     <h4>{recievedData[id].title}</h4>
                                 </div>
                                 <div className={styles.task_progress}>
-                                    <span style={{backgroundColor:recievedData[id].status == "todo" ? 'red':recievedData[id].status == "completed"?'green':'blue'}}>{recievedData[id].status}</span>
+                                    <span style={{backgroundColor:recievedData[id].status === "todo" ? 'red':recievedData[id].status === "completed"?'green':'blue'}}>{recievedData[id].status}</span>
                                 </div>
                             </div>
                             <div className={styles.edit_delete}>
