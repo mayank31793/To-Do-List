@@ -8,12 +8,12 @@ import styles from '../assets/styles/loggedOut.module.scss';
 const LoggedOut = (props) => {
     const responseAuth = (response) => {
         if('graphDomain' in response){
-            props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url,response.id);
+            props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url);
             console.log(response);
             localStorage.setItem('userId',response.id) 
         }
         else if('profileObj' in response){
-            props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl,response.profileObj.googleId);
+            props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl);
             console.log(response);
             localStorage.setItem('userId',response.profileObj.googleId)
         }

@@ -1,32 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import LoggedIn from './loggedIn';
 import LoggedOut from './loggedOut';
 import Navbar from './Navbar';
 
 const Home = () => {
-    const [loginStatus, setLoginStatus] = useState(null);
+    const [loginStatus, setLoginStatus] = useState(false);
     const [expand, setExpand] = useState(true);
-    const [loginData,setLoginData] = useState({name:'',image:''});
+    const [loginData,setLoginData] = useState({name:'',image:'',userId:''});
 
-    const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage,userId) => {
-        setLoginData({name:responseLoginDataName,image:responseLoginDataImage,userId:userId})
-        if( localStorage.getItem('userId') !=null ){
-            setLoginStatus(true);
-            console.log('The user is logged in',loginStatus);
-        }
+    const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage) => {
+        setLoginData({name:responseLoginDataName,image:responseLoginDataImage,userId:localStorage.getItem('userId')})
     }
 
     const handleExpand = () => {
         setExpand(!expand)
-        console.log(expand);
     }
 
     const handleLogout = () => {
         localStorage.removeItem('userId');
         setLoginStatus(false);
-        console.log('The user is logged out',loginStatus);
     }
+
+    useEffect(() => {
+        if( localStorage.getItem('userId') !=null ){
+            setLoginStatus(true);
+        }
+        else{
+            setLoginStatus(false);
+        }
+    },[loginData])
 
     return ( 
         <div>
