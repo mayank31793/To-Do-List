@@ -7,10 +7,10 @@ import Navbar from './Navbar';
 const Home = () => {
     const [loginStatus, setLoginStatus] = useState(false);
     const [expand, setExpand] = useState(true);
-    const [loginData,setLoginData] = useState({name:'',image:'',userId:''});
+    const [loginData,setLoginData] = useState({name:'',image:''});
 
     const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage) => {
-        setLoginData({name:responseLoginDataName,image:responseLoginDataImage,userId:localStorage.getItem('userId')})
+        setLoginData({name:responseLoginDataName,image:responseLoginDataImage})
     }
 
     const handleExpand = () => {
@@ -25,7 +25,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if( localStorage.getItem('userId') ==null ){
+        if( localStorage.getItem('userId') === null ){
             setLoginStatus(false);
         }
         else{
