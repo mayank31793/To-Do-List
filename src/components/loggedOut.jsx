@@ -4,6 +4,7 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 
 import styles from '../assets/styles/loggedOut.module.scss';
+import { Redirect } from 'react-router-dom';
 
 const LoggedOut = (props) => {
     const responseAuth = (response) => {
@@ -61,6 +62,7 @@ const LoggedOut = (props) => {
                             />
                         </div>
                     </div>
+                    <Redirect to="/" />
                 </div>
             </div>            
         </div>
