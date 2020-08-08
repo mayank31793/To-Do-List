@@ -10,7 +10,6 @@ const LoggedOut = (props) => {
     const responseAuth = (response) => {
         if('graphDomain' in response){
             props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url);
-            console.log(response);
             localStorage.setItem('userId',response.id);
             localStorage.setItem('userName',response.name);
             localStorage.setItem('userImage',response.picture.data.url); 
@@ -50,7 +49,7 @@ const LoggedOut = (props) => {
                                 clientId="146469123782-kqf593qh32a6k7t5dq667miunu5sek33.apps.googleusercontent.com"
                                 buttonText="Login With Google"
                                 onSuccess={responseAuth}  
-                                onFailure={responseAuth}
+                                // onFailure={responseAuth}
                                 cookiePolicy={'single_host_origin'}
                             />
                         </div>
@@ -61,7 +60,7 @@ const LoggedOut = (props) => {
                                 autoLoad={true}
                                 fields="name,email,picture"
                                 onClick={componentClicked}
-                                callback={responseAuth} 
+                                // callback={responseAuth} 
                             />
                         </div>
                     </div>

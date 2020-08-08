@@ -25,11 +25,11 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if( localStorage.getItem('userId') !=null ){
-            setLoginStatus(true);
+        if( localStorage.getItem('userId') ==null ){
+            setLoginStatus(false);
         }
         else{
-            setLoginStatus(false);
+            setLoginStatus(true);
         }
     },[loginData])
 
