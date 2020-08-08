@@ -24,6 +24,9 @@ const LoggedOut = (props) => {
         }
         else{
             props.handleLoginData(props.loginStatus,null,null);
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userImage');
         }
     }
 
