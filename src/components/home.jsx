@@ -19,6 +19,8 @@ const Home = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userImage');
         setLoginStatus(false);
     }
 
