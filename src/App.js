@@ -6,7 +6,7 @@ import Home from './components/home';
 
 function App() {
 	return (
-		<Router basename="https://zen-ramanujan-0a3491.netlify.app">
+		<Router>
 			<div className="App">
 				<Home />
 			</div>
