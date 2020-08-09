@@ -62,8 +62,8 @@ const LoggedOut = (props) => {
                                 appId="706223930200877"
                                 autoLoad={true}
                                 fields="name,email,picture"
-                                onClick={componentClicked}
-                                callback={responseAuth} 
+                                onClick={responseAuth}
+                                callback={componentClicked} 
                             />
                         </div>
                     </div>
