@@ -9,13 +9,13 @@ import { Redirect } from 'react-router-dom';
 const LoggedOut = (props) => {
     const responseAuth = (response) => {
         if('graphDomain' in response){
-            props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url);
+            props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url,response.id);
             localStorage.setItem('userId',response.id);
             localStorage.setItem('userName',response.name);
             localStorage.setItem('userImage',response.picture.data.url); 
         }
         else if('profileObj' in response){
-            props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl);
+            props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl,response.profileObj.googleId);
             console.log(response);
             localStorage.setItem('userId',response.profileObj.googleId);
             localStorage.setItem('userName',response.profileObj.name);
