@@ -7,10 +7,10 @@ import Navbar from './Navbar';
 const Home = () => {
     const [loginStatus, setLoginStatus] = useState(false);
     const [expand, setExpand] = useState(true);
-    const [loginData,setLoginData] = useState({name:'',image:''});
+    const [loginData,setLoginData] = useState({name:'',image:'',userId:''});
 
-    const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage) => {
-        setLoginData({name:responseLoginDataName,image:responseLoginDataImage})
+    const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage,responseLoginUserId) => {
+        setLoginData({name:responseLoginDataName,image:responseLoginDataImage,userId:responseLoginUserId})
     }
 
     const handleExpand = () => {

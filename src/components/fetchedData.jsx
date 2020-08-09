@@ -37,8 +37,6 @@ const FetchedData = (props) => {
         }    
     },[dataSubmitted])
 
-    console.log(recievedData);
-
     const handleClose = () => {
         setShow(false);
         setEditButtonVisiblity(false)
@@ -95,7 +93,6 @@ const FetchedData = (props) => {
             userLoginId:localStorage.getItem('userId'),
             bgColor:"#ede9e9"
         }
-        console.log('this is changes submit',id)
         axios.put('https://test-9515d.firebaseio.com/taskData/'+id+'.json',editedData)
             .then(res => {
                 setDataSubmitted(true);
@@ -107,9 +104,7 @@ const FetchedData = (props) => {
     }
 
     const handleEdit = (id) => {
-        console.log('this is '+id);
         setShow(true);
-        console.log(recievedData[id]);
         setTitle(recievedData[id].title);
         setDescription(recievedData[id].description);
         setDate(recievedData[id].date);
