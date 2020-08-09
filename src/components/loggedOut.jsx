@@ -13,6 +13,7 @@ const LoggedOut = (props) => {
             localStorage.setItem('userId',response.id);
             localStorage.setItem('userName',response.name);
             localStorage.setItem('userImage',response.picture.data.url); 
+            console.log(response);
         }
         else if('profileObj' in response){
             props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl,response.profileObj.googleId);
@@ -20,12 +21,14 @@ const LoggedOut = (props) => {
             localStorage.setItem('userId',response.profileObj.googleId);
             localStorage.setItem('userName',response.profileObj.name);
             localStorage.setItem('userImage',response.profileObj.imageUrl);
+            console.log(response);
         }
         else{
             props.handleLoginData(props.loginStatus,null,null);
             localStorage.removeItem('userId');
             localStorage.removeItem('userName');
             localStorage.removeItem('userImage');
+            console.log(response);
         }
     }
 
