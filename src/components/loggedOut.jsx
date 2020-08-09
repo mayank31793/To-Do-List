@@ -32,13 +32,9 @@ const LoggedOut = (props) => {
         }
     }
 
-    // const responseAuthFailure = (response) => {
-    //     console.log('Something went wrong',response);
-    // }
-
-    // const componentClicked = (data) => {
-    //     console.log(data);
-    // }
+    const componentClicked = (data) => {
+        console.log(data);
+    }
 
     return ( 
         <div className={styles.container}>
@@ -55,9 +51,8 @@ const LoggedOut = (props) => {
                             <GoogleLogin 
                                 clientId="146469123782-kqf593qh32a6k7t5dq667miunu5sek33.apps.googleusercontent.com"
                                 buttonText="Login With Google"
-                                onClick={responseAuth}
-                                // onSuccess={responseAuth}  
-                                // onFailure={responseAuthFailure}
+                                onSuccess={responseAuth}  
+                                onFailure={responseAuth}
                                 cookiePolicy={'single_host_origin'}
                             />
                         </div>
@@ -67,8 +62,8 @@ const LoggedOut = (props) => {
                                 appId="706223930200877"
                                 autoLoad={true}
                                 fields="name,email,picture"
-                                onClick={responseAuth}
-                                // callback={componentClicked} 
+                                onClick={componentClicked}
+                                callback={responseAuth} 
                             />
                         </div>
                     </div>
