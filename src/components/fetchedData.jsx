@@ -21,18 +21,20 @@ const FetchedData = (props) => {
     const [recievedData,setRecievedData] = useState([]);
 
     useEffect(() => {
-        axios.get('https://test-9515d.firebaseio.com/taskData.json')
-            .then((res) => {
-                var filterDataUserId = Object.keys(res.data).filter((key) => res.data[key].userLoginId === localStorage.getItem('userId'))
-                const filtered = Object.keys(res.data)
-                .filter(key => filterDataUserId.includes(key))
-                .reduce((obj, key) => {
-                    obj[key] = res.data[key];
-                    return obj;
-                }, {});
-                console.log(filtered);
-                setRecievedData(filtered);
-            })
+        if(localStorage.getItem('userId') !== null){
+            axios.get('https://test-9515d.firebaseio.com/taskData.json')
+                .then((res) => {
+                    var filterDataUserId = Object.keys(res.data).filter((key) => res.data[key].userLoginId === localStorage.getItem('userId'))
+                    const filtered = Object.keys(res.data)
+                    .filter(key => filterDataUserId.includes(key))
+                    .reduce((obj, key) => {
+                        obj[key] = res.data[key];
+                        return obj;
+                    }, {});
+                    console.log(filtered);
+                    setRecievedData(filtered);
+                })
+        }    
     },[dataSubmitted])
 
     console.log(recievedData);

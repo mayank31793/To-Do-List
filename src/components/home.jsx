@@ -27,9 +27,11 @@ const Home = () => {
     useEffect(() => {
         if( localStorage.getItem('userId') === null ){
             setLoginStatus(false);
+            console.log('this is false loginstate');
         }
         else{
             setLoginStatus(true);
+            console.log('this is false loginstate');
         }
     },[loginData])
 
