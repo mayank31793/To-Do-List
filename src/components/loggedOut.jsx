@@ -56,7 +56,7 @@ const LoggedOut = (props) => {
                                 cookiePolicy={'single_host_origin'}
                             />
                         </div>
-                        <p className={styles.paragraph}>---- OR ----</p>
+                        {/* <p className={styles.paragraph}>---- OR ----</p> */}
                         <div className={styles.facebook_login}>
                             {/* <FacebookLogin
                                 appId="706223930200877"

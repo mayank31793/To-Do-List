@@ -13,6 +13,7 @@ const FetchedData = (props) => {
     const [editButtonVisiblity,setEditButtonVisiblity] = useState(false);
     const [disabled,setDisabled] = useState(true);
 
+    const [emptyTextField,setEmptyTextField] = useState(false);
     const [title,setTitle] = useState('');
     const [description,setDescription] = useState('');
     const [date,setDate] = useState('');
@@ -63,7 +64,11 @@ const FetchedData = (props) => {
             userLoginId:localStorage.getItem('userId'),
             bgColor:"#ede9e9"
         }
-        axios.post('https://test-9515d.firebaseio.com/taskData.json',myTaskData)
+        if(title==""){
+            setEmptyTextField(true);
+        }
+        else{
+            axios.post('https://test-9515d.firebaseio.com/taskData.json',myTaskData)
             .then((res) => {
                 setDataSubmitted(true);
                 setTitle('');
@@ -71,6 +76,7 @@ const FetchedData = (props) => {
                 setDate('');
                 setStatus('todo');
             })
+        }
     }
 
     const handleDelete = (id,title) => {
@@ -122,7 +128,7 @@ const FetchedData = (props) => {
 
     return ( 
         <div>
-            <ThemeContext.Provider value={{recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,editId,handleClose,handleAddNew,handleSubmit,handleDelete,handleChangesSubmit,handleSelect,handleEdit,handleEditWrite,setTitle,setDescription,setDate}}>
+            <ThemeContext.Provider value={{recievedData,show,readOnly,disabled,showEdit,editButtonVisiblity,detailsEdit,dataSubmitted,title,description,date,status,editId,emptyTextField,handleClose,handleAddNew,handleSubmit,handleDelete,handleChangesSubmit,handleSelect,handleEdit,handleEditWrite,setTitle,setDescription,setDate}}>
                 {props.children}
             </ThemeContext.Provider>
         </div>

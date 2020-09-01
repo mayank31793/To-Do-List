@@ -114,6 +114,10 @@ $containerHeight: 150px;
     display: flex;
     .task_heading{
         width: 84%;
+        h4{
+            font-weight: 600;
+            text-transform: uppercase;
+        }
     }
     .task_progress{
         width: 16%;
@@ -144,4 +148,19 @@ $containerHeight: 150px;
         height: 27px;
         border-radius: 3px;
     }
+}
+
+.requiredField{
+    color:red;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    margin-right: 3px;
+}
+
+.requiredFieldNote{
+    color: red;
+    font-size: 10px;
+    display: none;
+    margin-bottom: 0px;
 }

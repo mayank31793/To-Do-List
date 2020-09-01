@@ -11,8 +11,7 @@ import { ThemeContext } from './fetchedData';
 
 const Dashboard = (props) => {
 
-    const {recievedData,show,readOnly,disabled,editButtonVisiblity,dataSubmitted,title,description,status,editId,handleClose,handleAddNew,handleChangesSubmit,handleSubmit,handleDelete,handleEdit,handleEditWrite,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
-    // console.log(props.userLoginData);
+    const {recievedData,show,readOnly,disabled,editButtonVisiblity,dataSubmitted,title,emptyTextField,description,status,editId,handleClose,handleAddNew,handleChangesSubmit,handleSubmit,handleDelete,handleEdit,handleEditWrite,handleSelect,setTitle,setDescription,setDate} = useContext(ThemeContext);
     return ( 
         <div>
             <div className={styles.heading_container}>
@@ -33,6 +32,8 @@ const Dashboard = (props) => {
                             <div className={styles.task_heading_container}>
                                 <div className={styles.task_heading}>
                                     <h4>{recievedData[id].title}</h4>
+                                    <p>{recievedData[id].description}</p>
+                                    {recievedData[id].date ? <p>{recievedData[id].date}</p>:null}
                                 </div>
                                 <div className={styles.task_progress}>
                                     <span style={{backgroundColor:recievedData[id].status === "todo" ? 'red':recievedData[id].status === "completed"?'green':'blue'}}>{recievedData[id].status}</span>
@@ -67,20 +68,21 @@ const Dashboard = (props) => {
                                 
                         :
                             <div>
-                                <label for="title">Task Title</label>
+                                <label htmlFor="title"><span className={styles.requiredField}>*</span>Task Title</label>
                                 <input type="text" 
                                     value={title} 
                                     id="task_title"
                                     className={styles.task_title} 
                                     onChange={(e) => setTitle(e.target.value)}
                                     readOnly={readOnly} />
-                                <label for="task_description">Description</label>
+                                <p className={styles.requiredFieldNote} style={{display:emptyTextField?"block":"none"}}>* Required Fields</p>
+                                <label htmlFor="task_description">Description</label>
                                 <textarea id="task_description" className={styles.task_title} 
                                     onChange={(e) => setDescription(e.target.value)} value={description}
                                     readOnly={readOnly} />
                                 <div className={styles.date_status_container}>
                                     <div className={styles.date_status}>
-                                        <label for="assign_date">Date</label>
+                                        <label htmlFor="assign_date">Date</label>
                                         <input type="date" 
                                             id="assign_date"
                                             className={styles.task_title} 
@@ -88,7 +90,7 @@ const Dashboard = (props) => {
                                             readOnly={readOnly} />
                                     </div>
                                     <div className={styles.date_status}>
-                                        <label for="assign_status">Status</label>
+                                        <label htmlFor="assign_status">Status</label>
                                         <select value={status} onChange={(e) => handleSelect(e.target.value)} readOnly={readOnly} >
                                             <option value="todo">To Do</option>
                                             <option value="inprogress">In Progress</option>
