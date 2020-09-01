@@ -54,6 +54,7 @@ const LoggedOut = (props) => {
                                 onSuccess={responseAuth}  
                                 onFailure={responseAuth}
                                 cookiePolicy={'single_host_origin'}
+                                prompt = {'consent' }
                             />
                         </div>
                         {/* <p className={styles.paragraph}>---- OR ----</p> */}
