@@ -8,15 +8,15 @@ import { Redirect } from 'react-router-dom';
 
 const LoggedOut = (props) => {
     const responseAuth = (response) => {
-        if('graphDomain' in response && props.loginStatus){
-            props.handleLoginData(!props.loginStatus,response.name,response.picture.data.url,response.id);
+        if('graphDomain' in response){
+            props.handleLoginData(!props.loginStatus, response.name, response.picture.data.url, response.id);
             localStorage.setItem('userId',response.id);
             localStorage.setItem('userName',response.name);
             localStorage.setItem('userImage',response.picture.data.url); 
             console.log(response);
         }
-        else if('profileObj' in response && props.loginStatus){
-            props.handleLoginData(!props.loginStatus,response.profileObj.name,response.profileObj.imageUrl,response.profileObj.googleId);
+        else if('profileObj' in response){
+            props.handleLoginData(!props.loginStatus, response.profileObj.name, response.profileObj.imageUrl, response.profileObj.googleId);
             console.log(response);
             localStorage.setItem('userId',response.profileObj.googleId);
             localStorage.setItem('userName',response.profileObj.name);
@@ -24,7 +24,7 @@ const LoggedOut = (props) => {
             console.log(response);
         }
         else{
-            props.handleLoginData(props.loginStatus,null,null);
+            props.handleLoginData(props.loginStatus, null, null);
             localStorage.removeItem('userId');
             localStorage.removeItem('userName');
             localStorage.removeItem('userImage');
@@ -58,13 +58,13 @@ const LoggedOut = (props) => {
                         </div>
                         <p className={styles.paragraph}>---- OR ----</p>
                         <div className={styles.facebook_login}>
-                            <FacebookLogin
+                            {/* <FacebookLogin
                                 appId="706223930200877"
                                 autoLoad={true}
                                 fields="name,email,picture"
                                 onClick={componentClicked}
                                 callback={responseAuth} 
-                            />
+                            /> */}
                         </div>
                     </div>
                     <Redirect to="/" />

@@ -6,7 +6,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import styles from '../assets/styles/Navbar.module.scss';
 
 const Navbar = (props) => {
-    console.log(props)
     return ( 
         <div className={styles.container}>
             <div className={styles.main_container}>

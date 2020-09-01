@@ -11,6 +11,7 @@ const Home = () => {
 
     const handleLoginData = (responseLoginStatus,responseLoginDataName,responseLoginDataImage,responseLoginUserId) => {
         setLoginData({name:responseLoginDataName,image:responseLoginDataImage,userId:responseLoginUserId})
+
     }
 
     const handleExpand = () => {
@@ -25,7 +26,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if( localStorage.getItem('userId') === null ){
+        if( localStorage.getItem('userId') == null ){
             setLoginStatus(false);
             console.log('this is false loginstate');
         }
