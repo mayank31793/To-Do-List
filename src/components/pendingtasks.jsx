@@ -27,15 +27,17 @@ const PendingTasks = (props) => {
                             <div className={styles.task_heading_container}>
                                 <div className={styles.task_heading}>
                                     <h4>{recievedData[id].title}</h4>
+                                    <p>{recievedData[id].description}</p>
+                                    {recievedData[id].date ? <p>{recievedData[id].date}</p>:null}
                                 </div>
                                 <div className={styles.task_progress}>
                                     <span style={{backgroundColor:recievedData[id].status === "todo" ? 'red':recievedData[id].status === "completed"?'green':'blue'}}>{recievedData[id].status}</span>
                                 </div>
                             </div>
                             <div className={styles.edit_delete}>
-                                <div className={styles.edit}>
+                                {/* <div className={styles.edit}>
                                     <FiEdit />
-                                </div>
+                                </div> */}
                                 <div className={styles.delete} onClick={() => handleDelete(id,recievedData[id].title)}>
                                     <AiOutlineDelete />
                                 </div>

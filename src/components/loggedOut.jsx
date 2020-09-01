@@ -49,7 +49,7 @@ const LoggedOut = (props) => {
                         <p className={styles.paragraph}>SignUp / SignIn with</p>
                         <div className={styles.google_login}>
                             <GoogleLogin 
-                                clientId="146469123782-kqf593qh32a6k7t5dq667miunu5sek33.apps.googleusercontent.com"
+                                clientId="146469123782-ibm3km6csgk5ulqmvqf84ro2reslikiu.apps.googleusercontent.com"
                                 buttonText="Login With Google"
                                 onSuccess={responseAuth}  
                                 onFailure={responseAuth}
